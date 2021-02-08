@@ -9,12 +9,24 @@
  * > Needs public toString() method
  */
  
- class room {
  
-	public static void main(String[] args){
+ public class room {
 	 
-		System.out.println("Hello Again");
-	 
-	}
+	private String room_Name;
 	
- }
+	String[] animals_Visiting = new String[10];
+ 
+	public Room(String room_Name) {
+		
+		this.room_Name = room_Name;
+	 
+	}	
+	
+	public String toString() {
+		
+		return "The Animals of " + room_Name + " are: " + animals_Visiting; 
+		
+	} 
+		
+ 
+  }
