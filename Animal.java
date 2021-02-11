@@ -13,10 +13,7 @@
 	 
 	 private String animal_Name;
 	 
-	 public Animal {
-		 
-		 this.animal_Name = animal_Name;
-		 
-	 }
+	 // Initialize Animal Object
+	 public Animal { this.animal_Name = animal_Name; }
 	 
  }

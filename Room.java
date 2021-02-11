@@ -9,24 +9,30 @@
  * > Needs public toString() method
  */
  
+ import java.util.ArrayList;
  
  public class room {
 	 
 	private String room_Name;
 	
-	String[] animals_Visiting = new String[10];
+	private ArrayList<String> animals_Visiting = new ArrayList<>();
  
-	public Room(String room_Name) {
-		
-		this.room_Name = room_Name;
-	 
-	}	
+	// Initialize Room Object
+	public Room(String room_Name) { this.room_Name = room_Name;	}	
 	
+	public void addAnimal(Animal a) { 
+	
+		Animal a = new Animal(this);
+		
+		if (animals_Visiting.size <= 10) { animals_Visiting.add(a); }
+
+	}
+	
+	// Return String
 	public String toString() {
 		
-		return "The Animals of " + room_Name + " are: " + animals_Visiting; 
+		return "The Animals of " + room_Name + " are: " + animals_Visiting.toString(); 
 		
-	} 
-		
+	}		
  
   }
