@@ -11,15 +11,12 @@
  
  public class Animal {
 	 
-	 private String animal_Name;
+	private String animal_Name;
 	 
-	 // Initialize Animal Object
-	 public Animal { this.animal_Name = animal_Name; }
+	// Initialize Animal Object
+	public Animal { this.animal_Name = animal_Name; }
 	 
-	 public String toString {
-		 
-		 return animal_Name;
-		 
-	 }
+	// Return String of Animal Name	 
+	public String toString { return animal_Name; }
 	 
  }
