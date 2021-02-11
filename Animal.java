@@ -16,4 +16,10 @@
 	 // Initialize Animal Object
 	 public Animal { this.animal_Name = animal_Name; }
 	 
+	 public String toString {
+		 
+		 return animal_Name;
+		 
+	 }
+	 
  }
