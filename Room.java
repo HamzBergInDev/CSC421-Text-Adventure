@@ -9,23 +9,21 @@
  * > Needs public toString() method
  */
  
- import java.util.ArrayList;
- 
- public class room {
+ public class Room {
 	 
 	private String room_Name;
 	
-	private ArrayList<String> animals_Visiting = new ArrayList<>();
+	public Animal[] animals_Visiting = new Animal[10];
  
 	// Initialize Room Object
 	public Room(String room_Name) { this.room_Name = room_Name;	}	
 	
 	public void addAnimal(Animal a) { 
 	
-		Animal a = new Animal(this);
+		for (int i = 0; animals_Visiting.length > i; i++) {
+			animals_Visiting[i] = a;
+		}
 		
-		if (animals_Visiting.size <= 10) { animals_Visiting.add(a); }
-
 	}
 	
 	// Return String

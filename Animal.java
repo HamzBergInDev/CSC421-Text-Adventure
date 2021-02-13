@@ -5,7 +5,7 @@
  
 /* Notables:
  * > Room can contain ten Animals
- * > Each room must have a name
+ * > Animal must have a name
  * > Needs public toString() method
  */
  
@@ -14,9 +14,11 @@
 	private String animal_Name;
 	 
 	// Initialize Animal Object
-	public Animal { this.animal_Name = animal_Name; }
+	public Animal() { this.animal_Name = animal_Name; }
 	 
 	// Return String of Animal Name	 
-	public String toString { return animal_Name; }
+	public String toString () { 
+		return animal_Name; 
+	}
 	 
  }
