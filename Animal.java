@@ -18,12 +18,12 @@
 	public Room room_Visiting; 
 	
 	// Initialize Animal Object
-	public Animal() { this.animal_Name = animal_Name; }
+	public Animal(String animal_Name) { this.animal_Name = animal_Name; }
 	 
 	// Return String of Animal Name	 
 	public String toString () { 
 	
-		return "Animal, " + animal_Name; 
+		return "Animal, " + animal_Name + " "; 
 		
 	}
 	 
