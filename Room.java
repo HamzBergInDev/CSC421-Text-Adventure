@@ -9,52 +9,50 @@
  * > Needs public toString() method
  */
  
- import java.util.Arrays;
- 
  public class Room {
-	 
+	
+	// Initialize Room Name String
 	private String room_Name;
 	
+	// Initialize Animal Array
 	public Animal[] animals_Visiting = new Animal[10];
 	
-	private boolean spot_Found = false; 
- 
 	// Initialize Room Object
 	public Room(String room_Name) { this.room_Name = room_Name;	}	
 	
-	// wrong
+	// 'Animal check' is used to look for null, 'Animal a' plugs one in.
 	public void addAnimal(Animal a) {
-		
-		// This method has to be able to find holes (null) and plug them in with animals
-		// as well as block any attempts to overwrite one animal with another animal
-		// as well as only add one animal and then stop.
-		
-		while (spot_Found == false) {
-			
-			for (int i = 0; animals_Visiting.length > i; i++) {
-			
-				if (animals_Visiting[i] == null) {
 				
-				animals_Visiting[i] = a;
+		for (Animal check: animals_Visiting) {
 			
-				spot_Found = true;
-			
-				} 
-			
+			if (check == null) {
+				
+				check = a;
+				
+				break;
+				
 			}
 			
 		}
 		
-		spot_Found = false;
-		
 	}
 	
-	// Return String wrong
+	// 'String return_Value' takes in all visiting animals before being returned.
 	public String toString() {
 		
-		return "The Animals of " + room_Name + " are: " + Arrays.toString(animals_Visiting); 
-		//This method needs to connect to individual animals and print them out.
-		// like animals_Visiting[0].toString() 
+		String return_Value = "The Animals of " + room_Name + " are: ";
+		
+		for (Animal check: animals_Visiting) {
+			
+			if (!(check == null)) {
+				
+				return_Value += check;
+				
+			}
+			
+		}
+		
+		return return_Value;
 		
 	}		
  

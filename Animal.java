@@ -10,9 +10,11 @@
  */
  
  public class Animal {
-	 
+	
+	// Initialize Animal Name String
 	private String animal_Name;
 	
+	// Initialize Room Visiting Reference 
 	public Room room_Visiting; 
 	
 	// Initialize Animal Object
@@ -20,7 +22,9 @@
 	 
 	// Return String of Animal Name	 
 	public String toString () { 
+	
 		return "Animal, " + animal_Name; 
+		
 	}
 	 
  }
