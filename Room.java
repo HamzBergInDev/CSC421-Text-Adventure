@@ -41,7 +41,7 @@
 				
 				if (space_Check == 10) {
 				
-				System.out.println("Animal " + a + " cannot visit. " + room_Name + " is full!");
+				System.out.println(a + "cannot visit. " + room_Name + " is full!");
 			
 				}				
 				
@@ -52,15 +52,30 @@
 	}
 	
 	// 'String return_Value' takes in all visiting animals before being returned.
+	// 'boolean exist_Check' remains false if no Animal is in Array
 	public String toString() {
 		
 		String return_Value = "In room " + room_Name + ", the animals visiting are: ";
+		
+		boolean exist_Check = false;
 		
 		for (int i = 0; animals_Visiting.length > i; i++) {
 			
 			if (!(animals_Visiting[i] == null)) {
 				
 				return_Value += animals_Visiting[i].toString();
+				
+				exist_Check = true;
+				
+			} else {				
+				
+				if (exist_Check == false) {
+				
+				return_Value += "no one's here.";
+				
+				break;
+			
+				}				
 				
 			}
 			

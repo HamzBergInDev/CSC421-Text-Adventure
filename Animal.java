@@ -23,7 +23,7 @@
 	// Return String of Animal Name	 
 	public String toString () { 
 	
-		return "Animal, " + animal_Name + " "; 
+		return "Animal " + animal_Name + ", "; 
 		
 	}
 	 
