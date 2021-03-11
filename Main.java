@@ -1,32 +1,56 @@
+/* Hamadi Belghachi
+ * CSC 241, 2/28/2021
+ * Homework 3 (Main.java)
+ */
+ 
+
 public class Main {
-  public static void main(String[] args) {
-    Room r = null;
-    r = new Room("Violet");
-    System.out.println(r.toString());
-    //Expected output: Room Violet, contains: nothing
-
-    Animal a = new Animal("Peter");
-    System.out.println(a.toString());
-    //Expected output: Animal Peter
-
-    r.addAnimal(a);
-    System.out.println(r.toString());
-    //Expected output: Room Violet, contains: Animal Peter
-    
-    Room green = new Room("Green");
-    for (int i = 0; i < 10; i++) {
-      Animal aForGreen = new Animal("Name" + i);
-      green.addAnimal(aForGreen);
-    }
-
-    System.out.println(green.toString());
-    //Expected output: Room Green, contains: Animal Name0, Animal Name1, Animal Name2, Animal Name3, Animal Name4, Animal Name5, Animal Name6, Animal Name7, Animal Name8, and Animal Name9 
-
-    Animal entering = new Animal("Lily");
-    green.addAnimal(entering);
-    //Expected output: Animal Lily cannot enter Room Green. There is no space for it.
-
-    System.out.println(green.toString());
-    //Expected output: Room Green, contains: Animal Name0, Animal Name1, Animal Name2, Animal Name3, Animal Name4, Animal Name5, Animal Name6, Animal Name7, Animal Name8, and Animal Name9 
-  }
+	
+	public static void main(String[] args) {
+		
+		//Scans User Input
+		Scanner scan = new Scanner(System.in);
+		
+		// Name Input Bloc
+		String player_Name = "";
+		System.out.println("What is the Player's name?");
+		player_Name = scan.nextline();
+		
+		// File Input Bloc
+		try {
+			
+			// Gets File
+			File inputXML = new File("input.xml");
+			
+			// Enables SAX based parser to look through XML Files
+			SAXParserFactory factoryParser = SAXParserFactory.newInstance();
+			
+			// Creates new SAX parser
+			SAXParser saxParser = factoryParser.newSAXParser();
+			
+			// Creates inputManager instance
+			inputManager input = new inputManager();
+			
+			// Parse Notice
+			System.out.println("...Parsing Started");
+			
+			// Parses info
+			saxParser.parse(inputXML, input);
+			
+		} catch (Exception error){
+			
+			// Details where the error specifically is
+			error.printStackTrace();
+			System.out.println("Something failed, look above!");
+			
+		}
+		
+		// Room Query Bloc
+		String room_Query = "";
+		System.out.println("What room do you need info on?");
+		room_Query = scan.nextLine();
+		// Missing code to request information from room.
+		
+	}
+	
 }
