@@ -1,77 +1,84 @@
 /* Hamadi Belghachi
  * CSC 241, 2/28/2021
- * Homework 3 (Room.java)
+ * Homework 3 (inputManager.java)
  */
- 
-public class inputManager extends DefaultManager {
 
-	boolean bool_Room = false;
-	boolean bool_Animal = false;
-	boolean bool_NPC = false;
-	boolean bool_PC = false;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.Attributes;
+
+public class inputManager extends DefaultHandler {
 	
-	// Checks to see if XML document matches.
+	public String name_Atbt;
+	public String desc_Atbt;
+	public String stat_Atbt;
+	public String nrth_Atbt;
+	public String east_Atbt;
+	public String suth_Atbt;
+	public String west_Atbt;
+	public String last_room;
+
+	// notifies start of parsing
 	@Override
-	public void startElement (String tag_Query, Attributes get_Attributes) throws SAXException {
+	public void startDocument() { System.out.println("Started document parsing..."); }
+
+	// parsing brain
+	@Override
+	public void startElement (String tag_Query, Attributes get_Attributes) {
 		
-		if (tag_Query.equalsIgnoreCase("room") {
+		// gets, prints, and creates room
+		if (tag_Query.equalsIgnoreCase("room")) {
 			
-			bool_Room = true;
+			name_Atbt = get_Attributes.getValue("name");
+			desc_Atbt = get_Attributes.getValue("description");
+			stat_Atbt = get_Attributes.getValue("state");
+			nrth_Atbt = get_Attributes.getValue("north");
+			east_Atbt = get_Attributes.getValue("east");
+			suth_Atbt = get_Attributes.getValue("south");
+			west_Atbt = get_Attributes.getValue("west");
+			last_room = get_Attributes.getValue("name");
 			
-			String room_Name = get_Attributes.getValue("name");
-			String room_Description = get_Attributes.getValue("description");
-			String room_State = get_Attributes.getValue("state");
-			String room_North = get_Attributes.getValue("north");
-			String room_East = get_Attributes.getValue("east");
-			String room_South = get_Attributes.getValue("south");
-			String room_West = get_Attributes.getValue("west");
+			System.out.println( name_Atbt + ", " + desc_Atbt + ", " + stat_Atbt + ", " +
+								nrth_Atbt + ", " + east_Atbt + ", " + suth_Atbt + ", " +
+								west_Atbt );
+
+			new Room(name_Atbt);
+		
+		// gets, prints, and creates animal
+		} else if (tag_Query.equalsIgnoreCase("animal")) {
 			
-			System.out.println( "Room name: " + room_Name + 
-								" Room Desc.: " + room_Description + 
-								" Room State: " + room_State + 
-								" Room North: " + room_North +
-								" Room East: " + room_East +
-								" Room South: " + room_South +
-								" Room West: " + room_West );			
+			name_Atbt = get_Attributes.getValue("name");
+			desc_Atbt = get_Attributes.getValue("description");
+
+
+			System.out.println(name_Atbt + " of " + last_room + ", " + desc_Atbt);
+								
+			new Animal(name_Atbt);
 			
-		} else if (tag_Query.equalsIgnoreCase("animal") {
+		// gets, prints, and creates NPC
+		} else if (tag_Query.equalsIgnoreCase("npc")) {
 			
-			bool_Animal = true;
-			String animal_Description = get_Attributes.getValue("description");
+			String name_Atbt = get_Attributes.getValue("name");
+			String desc_Atbt = get_Attributes.getValue("description");
 			
-		} else if (tag_Query.equalsIgnoreCase("npc") {
+			System.out.println(name_Atbt + " of " + last_room + " , " + desc_Atbt);
+								
+			new NPC(name_Atbt);
 			
-			bool_NPC = true;
-			String NPC_Description = get_Attributes.getValue("description");
+		// gets, prints, and creates PC
+		} else if (tag_Query.equalsIgnoreCase("pc")) {
 			
-		} else if (tag_Query.equalsIgnoreCase("pc") {
+			String name_Atbt = get_Attributes.getValue("name");
+			String description_Atbt = get_Attributes.getValue("description");
 			
-			bool_PC = true;
-			String PC_Description = get_Attributes.getValue("description");
+			System.out.println("PC of " + last_room + ", " + desc_Atbt);								
 			
 		}		
 		
-	}
+	}	
 	
-	// Notifies when matching document
-	public void endElement (String tag_Query) throws SAXException {
-		
-		if (tag_Query.equalsIgnoreCase("room")) {
-			
-			System.out.println("Boolean Parsing Complete");		
-		
-	}
-	
+	// notifies end of parsing
 	@Override
-	public void characters (char ch[], int start, int length) throws SAXException {
-		
-		if (bool_Room) {
-			
-			// We need a method that takes the XML document and converts the tags into objects here.
-			new Room(
-		
-	}
+	public void endDocument() { System.out.println("Document parsing finished."); }
 
-	
 	
 }
