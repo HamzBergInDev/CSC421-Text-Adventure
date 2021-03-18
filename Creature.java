@@ -1,7 +1,9 @@
-/* Hamadi Belghachi
- * CSC 241, 3/2/2021
- * Homework 2 (Creature.java)
- */
+ /*
+  * Hamadi Belghachi
+  * Version 3, 2021.3.17
+  * Creature.java, code to create a Creature object.
+  * CSC 241
+  */
  
  public abstract class Creature {
 	

@@ -1,9 +1,11 @@
-/* Hamadi Belghachi
- * CSC 241, 2/28/2021
- * Homework 2 (Animal.java)
- */
+ /*
+  * Hamadi Belghachi
+  * Version 3, 2021.3.17
+  * Animal.java, code to create a Animal object.
+  * CSC 241
+  */
  
- public class Animal {
+ public class Animal extends Creature{
 	
 	// Initialize Animal Properties
 	private String animal_Name;

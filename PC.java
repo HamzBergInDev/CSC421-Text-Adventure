@@ -1,7 +1,9 @@
-/* Hamadi Belghachi
- * CSC 241, 3/2/2021
- * Homework 2 (PC.java)
- */
+ /*
+  * Hamadi Belghachi
+  * Version 3, 2021.3.17
+  * PC.java, code to create a PC object.
+  * CSC 241
+  */
  
  public class PC extends Creature {
 	

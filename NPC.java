@@ -1,7 +1,9 @@
-/* Hamadi Belghachi
- * CSC 241, 3/2/2021
- * Homework 2 (NPC.java)
- */
+ /*
+  * Hamadi Belghachi
+  * Version 3, 2021.3.17
+  * NPC.java, code to create an NPC object.
+  * CSC 241
+  */
  
  public class NPC extends Creature {
 	

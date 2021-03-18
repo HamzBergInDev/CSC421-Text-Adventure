@@ -1,13 +1,25 @@
-/* Hamadi Belghachi
- * CSC 241, 2/28/2021
- * Homework 3 (inputManager.java)
+ /*
+  * Hamadi Belghachi
+  * Version 3, 2021.3.17
+  * inputManager.java, code to parse an .xml file and create objects accordingly.
+  * CSC 241
+  */
+ 
+/* To do:
+ * Connect the rooms
  */
 
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.Attributes;
 
+import java.util.ArrayList;
+
 public class inputManager extends DefaultHandler {
 	
+	private Creature creatureCreator;
+	public Room roomCreator;
+	public static ArrayList <Room> est_Rooms = new ArrayList<>();
+		
 	public String name_Atbt;
 	public String desc_Atbt;
 	public String stat_Atbt;
@@ -16,69 +28,78 @@ public class inputManager extends DefaultHandler {
 	public String suth_Atbt;
 	public String west_Atbt;
 	public String last_room;
-
-	// notifies start of parsing
+	
 	@Override
-	public void startDocument() { System.out.println("Started document parsing..."); }
+	public void startDocument() {System.out.println("Started document parsing...\n");}
 
-	// parsing brain
 	@Override
-	public void startElement (String tag_Query, Attributes get_Attributes) {
+	public void startElement(String unused, String unused2, String qName, Attributes attributes) {
 		
-		// gets, prints, and creates room
-		if (tag_Query.equalsIgnoreCase("room")) {
+		if (qName.equalsIgnoreCase("room")) {
 			
-			name_Atbt = get_Attributes.getValue("name");
-			desc_Atbt = get_Attributes.getValue("description");
-			stat_Atbt = get_Attributes.getValue("state");
-			nrth_Atbt = get_Attributes.getValue("north");
-			east_Atbt = get_Attributes.getValue("east");
-			suth_Atbt = get_Attributes.getValue("south");
-			west_Atbt = get_Attributes.getValue("west");
-			last_room = get_Attributes.getValue("name");
+			name_Atbt = attributes.getValue("name");
+			desc_Atbt = attributes.getValue("description");
+			stat_Atbt = attributes.getValue("state");
+			nrth_Atbt = attributes.getValue("north");
+			east_Atbt = attributes.getValue("east");
+			suth_Atbt = attributes.getValue("south");
+			west_Atbt = attributes.getValue("west");
+			last_room = attributes.getValue("name");
 			
-			System.out.println( name_Atbt + ", " + desc_Atbt + ", " + stat_Atbt + ", " +
+			System.out.println( "Room " + 
+								name_Atbt + ", " + desc_Atbt + ", " + stat_Atbt + ", " +
 								nrth_Atbt + ", " + east_Atbt + ", " + suth_Atbt + ", " +
-								west_Atbt );
+								west_Atbt);
 
-			new Room(name_Atbt);
+			roomCreator = new Room(name_Atbt, desc_Atbt, stat_Atbt, nrth_Atbt, east_Atbt, suth_Atbt, west_Atbt);
+
+			est_Rooms.add(roomCreator);
 		
-		// gets, prints, and creates animal
-		} else if (tag_Query.equalsIgnoreCase("animal")) {
+		} else if (qName.equalsIgnoreCase("animal")) {
 			
-			name_Atbt = get_Attributes.getValue("name");
-			desc_Atbt = get_Attributes.getValue("description");
-
+			name_Atbt = attributes.getValue("name");
+			desc_Atbt = attributes.getValue("description");
 
 			System.out.println(name_Atbt + " of " + last_room + ", " + desc_Atbt);
 								
-			new Animal(name_Atbt);
+			creatureCreator = new Animal(name_Atbt, desc_Atbt);
 			
-		// gets, prints, and creates NPC
-		} else if (tag_Query.equalsIgnoreCase("npc")) {
+			roomCreator.addCreature(creatureCreator);
+
+		} else if (qName.equalsIgnoreCase("npc")) {
 			
-			String name_Atbt = get_Attributes.getValue("name");
-			String desc_Atbt = get_Attributes.getValue("description");
+			String name_Atbt = attributes.getValue("name");
+			String desc_Atbt = attributes.getValue("description");
 			
-			System.out.println(name_Atbt + " of " + last_room + " , " + desc_Atbt);
+			System.out.println(name_Atbt + " of " + last_room + ", " + desc_Atbt);
 								
-			new NPC(name_Atbt);
+			creatureCreator = new NPC(name_Atbt, desc_Atbt);
 			
-		// gets, prints, and creates PC
-		} else if (tag_Query.equalsIgnoreCase("pc")) {
+			roomCreator.addCreature(creatureCreator);
 			
-			String name_Atbt = get_Attributes.getValue("name");
-			String description_Atbt = get_Attributes.getValue("description");
+		} else if (qName.equalsIgnoreCase("pc")) {
+			
+			String name_Atbt = attributes.getValue("name");
+			String description_Atbt = attributes.getValue("description");
 			
 			System.out.println("PC of " + last_room + ", " + desc_Atbt);								
 			
-		}		
+			roomCreator.addCreature(creatureCreator);
+			
+		}
+		
+		
 		
 	}	
 	
-	// notifies end of parsing
 	@Override
-	public void endDocument() { System.out.println("Document parsing finished."); }
+	public void endDocument() {
+		System.out.println("\nDocument parsing finished.");
+		
+		//Testing: System.out.println(roomCreator.toString());
+		
+	}
+		
 
 	
 }

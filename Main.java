@@ -1,53 +1,47 @@
-/* Hamadi Belghachi
- * CSC 241, 2/28/2021
- * Homework 3 (Main.java)
- */
+ /*
+  * Hamadi Belghachi
+  * Version 3, 2021.3.17
+  * Main.java, Main java file to execute all code.
+  * CSC 241
+  */
 
 import javax.xml.parsers.*;
 import java.io.File;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Main {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
-		//Scans User Input
 		Scanner scan = new Scanner(System.in);
-		
-		// Name Input Bloc
+
 		System.out.println("What is the Player's name?");
 		String player_Name = scan.nextLine();
-		
-		// File Input Bloc
+
 		try {
-			
-			// Gets File
-			File inputXML = new File("input.xml");			
-			// Enables SAX based parser to look through XML Files
+
+			System.out.println("What is the name of your game data file?");
+			String inputFileName = scan.nextLine(); //"input";			
+			if (!(inputFileName.charAt(inputFileName.length() - 4) == '.')) {inputFileName += ".xml";}			
+			System.out.println("Loading " + inputFileName + "...");
+
+			File inputXML = new File(inputFileName);
 			SAXParserFactory factoryParser = SAXParserFactory.newInstance();
 			SAXParser saxParser = factoryParser.newSAXParser();
 			
-			// Creates inputManager instance
 			inputManager input = new inputManager();
-			
-			// Parses info
 			saxParser.parse(inputXML, input);
 			
 		} catch (Exception error){
-			
-			// Details where the error specifically is
+
 			error.printStackTrace();
 			System.out.println("Something failed, look above!");
 			
 		}
 		
-		// Room Query Bloc
-		String room_Query = "";
-		System.out.println("What room do you need info on?");
-		room_Query = scan.nextLine();
-		// Missing code to request information from room.
-		
+
+				
 	}
 	
 }
