@@ -22,8 +22,10 @@ public class Main {
 		try {
 
 			System.out.println("What is the name of your game data file?");
-			String inputFileName = scan.nextLine(); //"input";			
-			if (!(inputFileName.charAt(inputFileName.length() - 4) == '.')) {inputFileName += ".xml";}			
+			String inputFileName = scan.nextLine(); //"input";
+			if ((inputFileName.length() > 4) && !(inputFileName.charAt(inputFileName.length() - 4) == '.')) 
+				 {inputFileName += ".xml";}
+			
 			System.out.println("Loading " + inputFileName + "...");
 
 			File inputXML = new File(inputFileName);
@@ -33,14 +35,15 @@ public class Main {
 			inputManager input = new inputManager();
 			saxParser.parse(inputXML, input);
 			
-		} catch (Exception error){
+		} catch (SAXException error){
 
 			error.printStackTrace();
-			System.out.println("Something failed, look above!");
+			System.out.println("Contents justify invaild XML file.");
 			
-		}
-		
-
+		} catch (ParseConfigurationException parseError){
+			
+			parseError.printStackTrace();
+			System.out.println("XML parsing system error.");
 				
 	}
 	
