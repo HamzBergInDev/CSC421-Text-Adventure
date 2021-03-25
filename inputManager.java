@@ -12,13 +12,14 @@
 import org.xml.sax.helpers.DefaultHandler;
 import org.xml.sax.Attributes;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class inputManager extends DefaultHandler {
 	
 	private Creature creatureCreator;
 	public Room roomCreator;
 	public static ArrayList <Room> est_Rooms = new ArrayList<>();
+	Scanner redunt = new Scanner(System.in);
 		
 	public String name_Atbt;
 	public String desc_Atbt;
@@ -87,14 +88,14 @@ public class inputManager extends DefaultHandler {
 			roomCreator.addCreature(creatureCreator);
 			
 		}
-		
-		
-		
+				
 	}	
 	
 	@Override
 	public void endDocument() {
 		System.out.println("\nDocument parsing finished.");
+		
+		PC.play(redunt, est_Rooms);
 		
 		//Testing: System.out.println(roomCreator.toString());
 		

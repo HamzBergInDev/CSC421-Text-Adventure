@@ -12,9 +12,12 @@ import java.util.*;
 
 public class Main {
 	
+	public static Scanner scan = new Scanner(System.in);
+	public static ArrayList <Room> redunt = new ArrayList<>();
+	
 	public static void main(String[] args) throws Exception {
 		
-		Scanner scan = new Scanner(System.in);
+		
 
 		System.out.println("What is the Player's name?");
 		String player_Name = scan.nextLine();
@@ -23,8 +26,14 @@ public class Main {
 
 			System.out.println("What is the name of your game data file?");
 			String inputFileName = scan.nextLine(); //"input";
-			if ((inputFileName.length() > 4) && !(inputFileName.charAt(inputFileName.length() - 4) == '.')) 
-				 {inputFileName += ".xml";}
+			if ((inputFileName.length() > 4) && !(inputFileName.charAt(inputFileName.length() - 4) == '.')) {
+				inputFileName += ".xml";
+			} else if (inputFileName.length() > 4) {
+				inputFileName += ".xml";
+			} else if (inputFileName.length() == 0) {
+				inputFileName = "input.xml";
+			}
+			 
 			
 			System.out.println("Loading " + inputFileName + "...");
 
@@ -35,16 +44,14 @@ public class Main {
 			inputManager input = new inputManager();
 			saxParser.parse(inputXML, input);
 			
-		} catch (SAXException error){
+		} catch (Exception error){
 
 			error.printStackTrace();
-			System.out.println("Contents justify invaild XML file.");
+			System.out.println("wrong");
 			
-		} catch (ParseConfigurationException parseError){
-			
-			parseError.printStackTrace();
-			System.out.println("XML parsing system error.");
-				
+		} 
+		
+		PC.play(scan, redunt);
+
 	}
-	
 }
