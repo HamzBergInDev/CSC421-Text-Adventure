@@ -35,9 +35,65 @@
 		
 	}
 	
-	public String roomNameID (String room_Name) {
+	public String getRoomName () { return this.room_Name; }
+	
+	public String getRoomState () { return this.room_Stat; }
+	
+	public String getCardnialRoom (String cardinal_Query) {
 		
-		return this.room_Name;
+		if (cardinal_Query.equalsIgnoreCase("north")) {
+			
+			return this.room_Nrth;
+			
+		} else if (cardinal_Query.equalsIgnoreCase("east")) {
+			
+			return this.room_East;
+			
+		} else if (cardinal_Query.equalsIgnoreCase("south")) {
+			
+			return this.room_Suth;
+			
+		} else if (cardinal_Query.equalsIgnoreCase("west")) {
+			
+			return this.room_West;
+			
+		}
+		
+		return null;
+		
+	}		
+	
+	public String state_Change (String stat_change) {
+		
+		if (room_Stat.equalsIgnoreCase("clean") && stat_change.equalsIgnoreCase("clean")) {
+			
+			return this.room_Stat = "clean";
+			
+		} else if (room_Stat.equalsIgnoreCase("half-dirty") && stat_change.equalsIgnoreCase("clean")) {
+			
+			return this.room_Stat = "clean";
+			
+		} else if (room_Stat.equalsIgnoreCase("dirty") && stat_change.equalsIgnoreCase("clean")) {
+			
+			return this.room_Stat = "half-dirty";
+			
+		} 
+
+		if (room_Stat.equalsIgnoreCase("clean") && stat_change.equalsIgnoreCase("dirty")) {
+			
+			return this.room_Stat = "half-dirty";
+			
+		} else if (room_Stat.equalsIgnoreCase("half-dirty") && stat_change.equalsIgnoreCase("dirty")) {
+			
+			return this.room_Stat = "dirty";
+			
+		} else if (room_Stat.equalsIgnoreCase("dirty") && stat_change.equalsIgnoreCase("dirty")) {
+			
+			return this.room_Stat = "dirty";
+			
+		}
+		
+		return null;
 		
 	}
 	
@@ -76,7 +132,9 @@
 				break;
 				}				
 			}	
-		}	
+		}
+		
+		return_Value += "\nThe room is " + room_Stat + ".";
  
 	return return_Value;
  

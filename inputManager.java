@@ -17,9 +17,10 @@ import java.util.*;
 public class inputManager extends DefaultHandler {
 	
 	private Creature creatureCreator;
-	public Room roomCreator;
-	public static ArrayList <Room> est_Rooms = new ArrayList<>();
-	Scanner redunt = new Scanner(System.in);
+	private Room roomCreator;
+	private PC player;
+
+	String read_out = "";
 		
 	public String name_Atbt;
 	public String desc_Atbt;
@@ -31,7 +32,7 @@ public class inputManager extends DefaultHandler {
 	public String last_room;
 	
 	@Override
-	public void startDocument() {System.out.println("Started document parsing...\n");}
+	public void startDocument() { System.out.println("Started document parsing...\n"); }
 
 	@Override
 	public void startElement(String unused, String unused2, String qName, Attributes attributes) {
@@ -47,21 +48,21 @@ public class inputManager extends DefaultHandler {
 			west_Atbt = attributes.getValue("west");
 			last_room = attributes.getValue("name");
 			
-			System.out.println( "Room " + 
-								name_Atbt + ", " + desc_Atbt + ", " + stat_Atbt + ", " +
-								nrth_Atbt + ", " + east_Atbt + ", " + suth_Atbt + ", " +
-								west_Atbt);
+			read_out += "Room " + 
+						name_Atbt + ", " + desc_Atbt + ", " + stat_Atbt + ", " +
+						nrth_Atbt + ", " + east_Atbt + ", " + suth_Atbt + ", " +
+						west_Atbt + "\n";
 
-			roomCreator = new Room(name_Atbt, desc_Atbt, stat_Atbt, nrth_Atbt, east_Atbt, suth_Atbt, west_Atbt);
+			roomCreator = new Room(name_Atbt, desc_Atbt, stat_Atbt, 
+								   nrth_Atbt, east_Atbt, suth_Atbt, 
+								   west_Atbt);
 
-			est_Rooms.add(roomCreator);
-		
 		} else if (qName.equalsIgnoreCase("animal")) {
 			
 			name_Atbt = attributes.getValue("name");
 			desc_Atbt = attributes.getValue("description");
 
-			System.out.println(name_Atbt + " of " + last_room + ", " + desc_Atbt);
+			read_out += name_Atbt + " of " + last_room + ", " + desc_Atbt + "\n";
 								
 			creatureCreator = new Animal(name_Atbt, desc_Atbt);
 			
@@ -69,10 +70,10 @@ public class inputManager extends DefaultHandler {
 
 		} else if (qName.equalsIgnoreCase("npc")) {
 			
-			String name_Atbt = attributes.getValue("name");
-			String desc_Atbt = attributes.getValue("description");
+			name_Atbt = attributes.getValue("name");
+			desc_Atbt = attributes.getValue("description");
 			
-			System.out.println(name_Atbt + " of " + last_room + ", " + desc_Atbt);
+			read_out += name_Atbt + " of " + last_room + ", " + desc_Atbt + "\n";
 								
 			creatureCreator = new NPC(name_Atbt, desc_Atbt);
 			
@@ -80,26 +81,24 @@ public class inputManager extends DefaultHandler {
 			
 		} else if (qName.equalsIgnoreCase("pc")) {
 			
-			String name_Atbt = attributes.getValue("name");
-			String description_Atbt = attributes.getValue("description");
+			name_Atbt = attributes.getValue("name");
+			desc_Atbt = attributes.getValue("description");
 			
-			System.out.println("PC of " + last_room + ", " + desc_Atbt);								
-			
+			read_out += "PC of " + last_room + ", " + desc_Atbt + "\n";
+						
 			roomCreator.addCreature(creatureCreator);
+			this.player = new PC(name_Atbt, desc_Atbt, roomCreator);
 			
 		}
-				
-	}	
-	
-	@Override
-	public void endDocument() {
-		System.out.println("\nDocument parsing finished.");
 		
-		PC.play(redunt, est_Rooms);
-		
-		//Testing: System.out.println(roomCreator.toString());
+		//System.out.println(read_out);
 		
 	}
+
+	public PC getPC() { return player; }
+	
+	@Override
+	public void endDocument() {	System.out.println("\nDocument parsing finished."); }
 		
 
 	

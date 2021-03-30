@@ -13,16 +13,15 @@
 	private String PC_Name;
 	private String PC_Description;
 	private int PC_Respect = 40;
-	
-	// Initialize Room Visiting Reference 
-	public Room room_Visiting; 
+	private Room room_Visiting; 
 	
 	// Initialize PC Object
-	public PC(String PC_Name, String PC_Description) { 
+	public PC(String PC_Name, String PC_Description, Room room_Visiting) { 
 	
 		this.PC_Name = PC_Name;
 		this.PC_Description = PC_Description;
 		this.PC_Respect = PC_Respect;
+		this.room_Visiting = room_Visiting;
 		
 	}
 	
@@ -35,7 +34,7 @@
 	public void roomChange() { }
 	
 	// This is where the fun begins
-	public static void play(Scanner s, ArrayList est_Rooms) {
+	public void play(Scanner s) {
 		
 		s = new Scanner(System.in);
 		
@@ -56,32 +55,25 @@
 				
 			} else if (command.equalsIgnoreCase("look")) {
 				
-				System.out.println("User asked to see, but they're blind.");
-				System.out.println("Which room do you want to see?");
-				command = s.nextLine();
+				System.out.println("\n" + room_Visiting.toString() + "\n");
 				
-				for (int i = 0; est_Rooms.size() > i; i++){
-					
-					//System.out.println("flag");
-					System.out.println(est_Rooms.get(i).toString());
-					
-					if(command.equalsIgnoreCase(est_Rooms.get(i).toString())) {
-						System.out.println(est_Rooms.get(i).toString());
-						System.out.println("flag");
-					}
-				}
+			} else if (command.equalsIgnoreCase("clean")) {				
 				
-			} else if (command.equalsIgnoreCase("clean")) {
+				room_Visiting.state_Change(command);
+				System.out.println("\nUser cleaned the room! " + room_Visiting.getRoomName() + 
+								   " is now " + room_Visiting.getRoomState() + ".\n");
 				
-				System.out.println("User asked to clean, but it's too dirty.");
-				
-			} else if (command.equalsIgnoreCase("Dirty")) {
+			} else if (command.equalsIgnoreCase("dirty")) {
 			
-				System.out.println("User asked to dirty, but that would be rude.");
+				room_Visiting.state_Change(command);
+				System.out.println("\nUser dirtied the room! " + room_Visiting.getRoomName() +
+								   " is now " + room_Visiting.getRoomState() + ".\n");
 				
 			} else if (command.equalsIgnoreCase("North")) {
 			
-				System.out.println("User asked to move north, but gave up.");
+				//System.out.println("User asked to move north, but gave up.");
+				System.out.println(room_Visiting.getCardnialRoom(command));
+				room_Visiting = 
 			
 			} else if (command.equalsIgnoreCase("East")) {
 			
@@ -97,7 +89,7 @@
 	
 			} else if (command.equalsIgnoreCase("exit")) {
 				
-				System.out.println("See you next time!");
+				System.out.println("\nSee you next time!");
 				System.exit(0);
 				
 			} else {
@@ -106,6 +98,7 @@
  
 			}
 			
+			System.out.println("What do you want to do?");
 			command = s.nextLine();
 			
 		}

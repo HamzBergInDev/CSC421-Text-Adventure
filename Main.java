@@ -8,16 +8,14 @@
 import javax.xml.parsers.*;
 import java.io.File;
 import java.util.*;
+import org.xml.sax.*;
 
 
 public class Main {
 	
-	public static Scanner scan = new Scanner(System.in);
-	public static ArrayList <Room> redunt = new ArrayList<>();
-	
 	public static void main(String[] args) throws Exception {
 		
-		
+		Scanner scan = new Scanner(System.in);
 
 		System.out.println("What is the Player's name?");
 		String player_Name = scan.nextLine();
@@ -25,7 +23,7 @@ public class Main {
 		try {
 
 			System.out.println("What is the name of your game data file?");
-			String inputFileName = scan.nextLine(); //"input";
+			String inputFileName = scan.nextLine();
 			if ((inputFileName.length() > 4) && !(inputFileName.charAt(inputFileName.length() - 4) == '.')) {
 				inputFileName += ".xml";
 			} else if (inputFileName.length() > 4) {
@@ -33,7 +31,6 @@ public class Main {
 			} else if (inputFileName.length() == 0) {
 				inputFileName = "input.xml";
 			}
-			 
 			
 			System.out.println("Loading " + inputFileName + "...");
 
@@ -44,6 +41,9 @@ public class Main {
 			inputManager input = new inputManager();
 			saxParser.parse(inputXML, input);
 			
+			PC fun = input.getPC();
+			fun.play(scan);
+			
 		} catch (Exception error){
 
 			error.printStackTrace();
@@ -51,7 +51,7 @@ public class Main {
 			
 		} 
 		
-		PC.play(scan, redunt);
+		
 
 	}
 }
