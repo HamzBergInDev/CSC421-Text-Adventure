@@ -11,18 +11,18 @@
 	private String room_Stat;
 	private String room_Desc;
 
-	public String room_Nrth;
-	public String room_East;
-	public String room_Suth;
-	public String room_West;
+	public Room room_Nrth;
+	public Room room_East;
+	public Room room_Suth;
+	public Room room_West;
 
 
 
 	public Creature[] creatures_Visiting = new Creature[10];
 	
 	public Room(String room_Name, String room_Desc, String room_Stat, 
-				String room_Nrth, String room_East, String room_Suth, 
-				String room_West) {	
+				Room room_Nrth, Room room_East, Room room_Suth, 
+				Room room_West) {	
 	
 		this.room_Name = room_Name;
 		this.room_Stat = room_Stat;
@@ -39,7 +39,7 @@
 	
 	public String getRoomState () { return this.room_Stat; }
 	
-	public String getCardnialRoom (String cardinal_Query) {
+	public Room getCardnialRoom (String cardinal_Query) {
 		
 		if (cardinal_Query.equalsIgnoreCase("north")) {
 			
@@ -61,7 +61,7 @@
 		
 		return null;
 		
-	}		
+	}	
 	
 	public String state_Change (String stat_change) {
 		
@@ -115,10 +115,10 @@
 	public String toString() {
 		
 		String return_Value = "Of room " + room_Name +
-								", the neighboring rooms are: N: " + room_Nrth + 
-								", E: " + room_East + 
-								", S: " + room_Suth + 
-								", W: " + room_West +
+								", the neighboring rooms are: N: " + /*room_Nrth.getRoomName + 
+								", E: " + room_East.getRoomName() + 
+								", S: " + room_Suth.getRoomName() + 
+								", W: " + room_West.getRoomName() + */
 								". \nIn " + room_Name + ", the creatures visiting are: ";
 		boolean exist_Check = false;
 		

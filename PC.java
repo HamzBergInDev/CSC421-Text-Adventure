@@ -71,9 +71,8 @@
 				
 			} else if (command.equalsIgnoreCase("North")) {
 			
-				//System.out.println("User asked to move north, but gave up.");
-				System.out.println(room_Visiting.getCardnialRoom(command));
-				room_Visiting = 
+				System.out.println("\nThe user has moved north to " + room_Visiting.getCardnialRoom(command) + ".\n");
+				room_Visiting = room_Visiting.getCardnialRoom(command);
 			
 			} else if (command.equalsIgnoreCase("East")) {
 			

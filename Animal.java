@@ -5,7 +5,7 @@
   * CSC 241
   */
  
- public class Animal extends Creature{
+ public class Animal extends Creature {
 	
 	// Initialize Animal Properties
 	private String animal_Name;
