@@ -70,21 +70,56 @@
 								   " is now " + room_Visiting.getRoomState() + ".\n");
 				
 			} else if (command.equalsIgnoreCase("North")) {
+				
+				if (room_Visiting.getCardnialRoom(command) == null) { 
+				
+					System.out.println("The user hit head against the wall.");
+				
+				} else {
 			
-				System.out.println("\nThe user has moved north to " + room_Visiting.getCardnialRoom(command) + ".\n");
-				room_Visiting = room_Visiting.getCardnialRoom(command);
+					System.out.println("\nThe user has moved north to " + room_Visiting.getCardnialRoom(command).getRoomName() + ".\n");
+					room_Visiting = room_Visiting.getCardnialRoom(command);
+				
+				}
 			
 			} else if (command.equalsIgnoreCase("East")) {
 			
-				System.out.println("User asked to move east, but gave up.");
+				if (room_Visiting.getCardnialRoom(command) == null) { 
+				
+					System.out.println("The user hit head against the wall.");
+				
+				} else {
+			
+					System.out.println("\nThe user has moved north to " + room_Visiting.getCardnialRoom(command).getRoomName() + ".\n");
+					room_Visiting = room_Visiting.getCardnialRoom(command);
+				
+				}
 			
 			} else if (command.equalsIgnoreCase("South")) {
 				
-				System.out.println("User asked to move south, but gave up.");
+				if (room_Visiting.getCardnialRoom(command) == null) { 
+				
+					System.out.println("The user hit head against the wall.");
+				
+				} else {
+			
+					System.out.println("\nThe user has moved north to " + room_Visiting.getCardnialRoom(command).getRoomName() + ".\n");
+					room_Visiting = room_Visiting.getCardnialRoom(command);
+				
+				}
 				
 			} else if (command.equalsIgnoreCase("West")) {
 				
-				System.out.println("User asked to move west, but gave up.");
+				if (room_Visiting.getCardnialRoom(command) == null) { 
+				
+					System.out.println("The user hit head against the wall.");
+				
+				} else {
+			
+					System.out.println("\nThe user has moved north to " + room_Visiting.getCardnialRoom(command).getRoomName() + ".\n");
+					room_Visiting = room_Visiting.getCardnialRoom(command);
+				
+				}
 	
 			} else if (command.equalsIgnoreCase("exit")) {
 				
@@ -93,7 +128,7 @@
 				
 			} else {
 				
-				System.out.println("What are you on about?");			
+				System.out.println("\nWhat are you on about?");			
  
 			}
 			

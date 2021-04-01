@@ -97,6 +97,14 @@
 		
 	}
 	
+	public Room north_Neighbor (Room neighbor) { return this.room_Nrth = neighbor; }
+	
+	public Room west_Neighbor (Room neighbor) { return this.room_West = neighbor; }
+	
+	public Room south_Neighbor (Room neighbor) { return this.room_Suth = neighbor; }
+	
+	public Room east_Neighbor (Room neighbor) { return this.room_East = neighbor; }
+	
 	public void addCreature(Creature a) {
 		
 		int space_Check = 0;
@@ -114,12 +122,7 @@
 
 	public String toString() {
 		
-		String return_Value = "Of room " + room_Name +
-								", the neighboring rooms are: N: " + /*room_Nrth.getRoomName + 
-								", E: " + room_East.getRoomName() + 
-								", S: " + room_Suth.getRoomName() + 
-								", W: " + room_West.getRoomName() + */
-								". \nIn " + room_Name + ", the creatures visiting are: ";
+		String return_Value = "\nIn " + room_Name + ", the creatures visiting are: ";
 		boolean exist_Check = false;
 		
 		for (int i = 0; creatures_Visiting.length > i; i++) {			

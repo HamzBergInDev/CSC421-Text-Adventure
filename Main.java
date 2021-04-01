@@ -41,6 +41,9 @@ public class Main {
 			inputManager input = new inputManager();
 			saxParser.parse(inputXML, input);
 			
+			
+			
+			
 			PC fun = input.getPC();
 			fun.play(scan);
 			
